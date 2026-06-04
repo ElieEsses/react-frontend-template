@@ -15,7 +15,7 @@ npm install
 cp .env.example .env   # edit VITE_API_BASE_URL if needed
 npm run dev
 ```
-Dev server: http://localhost:5173  
+Dev server: http://localhost:5000  
 `/api/*` proxied to FastAPI on `:8000` — no CORS config needed.
 
 ## Scripts
