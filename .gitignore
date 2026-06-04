@@ -1,0 +1,15 @@
+# deps / build
+node_modules
+dist
+
+# secrets — never commit these
+.env
+.env.*
+!.env.example
+
+# vite
+*.local
+
+# os
+.DS_Store
+Thumbs.db
