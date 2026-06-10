@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
+import { AuthCard } from "@/components/AuthCard";
 
 function parseError(err: unknown): string {
     if (!(err instanceof Error)) return "Something went wrong";
@@ -38,7 +39,7 @@ export function LoginPage() {
     }
 
     return (
-        <div className="mx-auto max-w-sm space-y-6">
+        <AuthCard>
             <h1 className="text-2xl font-semibold">Sign in</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -65,7 +66,7 @@ export function LoginPage() {
                 <button
                     type="submit"
                     disabled={loading}
-                    className="w-full rounded-md bg-neutral-900 px-4 py-2 text-white disabled:opacity-50"
+                    className="w-full rounded-md bg-blue-600 hover:bg-blue-700 px-4 py-2 text-white disabled:opacity-50"
                 >
                     {loading ? "Signing in…" : "Sign in"}
                 </button>
@@ -76,6 +77,6 @@ export function LoginPage() {
                     Sign up
                 </Link>
             </p>
-        </div>
+        </AuthCard>
     );
 }
