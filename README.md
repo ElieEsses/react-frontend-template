@@ -26,9 +26,34 @@ npm run lint
 npm run format
 ```
 
+## Auth
+Session auth via httponly cookies. The backend must implement:
+
+| Method | Path | Description |
+|---|---|---|
+| POST | `/auth/login` | Sets cookie, returns `{ success: true }` |
+| POST | `/auth/signup` | Creates user, returns `UserResponse` |
+| POST | `/auth/logout` | Clears cookie |
+| GET | `/auth/me` | Returns current user or 401 |
+
+**`useAuth()`** — call from any component inside `App`:
+```ts
+const { user, loading, login, signup, logout } = useAuth();
+```
+
+**Protected routes** — nest inside the existing `<Route element={<ProtectedRoute />}>` block in `App.tsx`. Unauthenticated users are redirected to `/login`:
+```tsx
+<Route element={<ProtectedRoute />}>
+    <Route path="/" element={<HomePage />} />
+    <Route path="/my-page" element={<MyPage />} />  {/* add here */}
+</Route>
+```
+
+**Public routes** — add outside that block, alongside `/login` and `/signup`.
+
 ## Add a page
 1. `src/pages/MyPage.tsx` — export a component
-2. `App.tsx` — add `<Route path="/my" element={<MyPage />} />`
+2. `App.tsx` — add `<Route path="/my" element={<MyPage />} />` (inside or outside `ProtectedRoute`)
 3. Fetch: `useFetch<MyType>("/my-endpoint")`
 
 ## When to upgrade
